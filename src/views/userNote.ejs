@@ -1,0 +1,86 @@
+<%- include('./shared/header')%>
+    <link rel="stylesheet" href="/profile.css">
+
+    <title>Document</title>
+    <link>
+    </head>
+
+    <body>
+      <%- include('./shared/navbar')%>
+         
+        <section class="main p-5">
+            <div class="container my-5 p-5">
+              <div class="row">
+                <% if (userNotes.length) { %>
+                    <% for( let index = 0; index < userNotes.length; index++ ) { %>
+                        <div class="col-md-4">
+                            <div class="card my-3" style="width: 18rem;">
+                              <!-- <object data="https://via.placeholder.com/150/150" type="image/png"> -->
+                                <img src="<%= userNotes[index].notePic %> " class="card-img-top" height="286" alt="notePic">
+                              <!-- </object> -->
+                        
+                              <div class="card-body">
+                                <h5 class="card-title">CreatedBy: <%= userNotes[index].createdBy?.name %>
+                                </h5>
+                                <p class="card-text">
+                                  <%= userNotes[index].noteBody %>
+                                </p>
+                                 </div>
+                            </div>
+                          </div>
+                        <% } %>
+                <% } else{%>
+                    <div class="alert alert-danger">no notes found</div>
+                    <%}%>
+              
+                
+              </div>
+            </div>
+        </section>
+       
+        <% if (numberOfPages>0 && applyPaginate) { %>
+          <nav aria-label="...">
+            <ul class="pagination pagination-sm d-flex justify-content-center">
+           <%#  <li class="page-item active" aria-current="page"> <span class="page-link">1</span> </li> %>    
+              <li class="page-item">
+                <a class="page-link" href="/user/getNotes/user/<%=userInfo._id%>/1/10">
+                  1
+                </a>
+              </li>
+              <% for( let index=2; index <=numberOfPages; index++ ) { %>
+                <li class="page-item"><a class="page-link" href="/user/getNotes/user/<%=userInfo._id%>/<%=index%>/10">
+                    <%= index %>
+                  </a></li>
+                <% } %>
+  
+  
+            </ul>
+          </nav>
+          <% } %>
+            
+        <%- include('./shared/footer')%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

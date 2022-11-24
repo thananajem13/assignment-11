@@ -1,0 +1,65 @@
+<%- include('./shared/header')%>
+
+    <title>Document</title>
+    </head>
+
+    <body>
+      <%- include('./shared/navbar')%>
+
+        <section class="main p-5">
+            <div class="container my-5 p-5">
+
+                
+                <div class="text-center my-1">
+                    <h2> Add note</h2>
+                </div>
+                <% if (messageErr?.length) { %>
+                    <div class="alert alert-danger text-center my-4">
+                      <%=messageErr%>
+                    </div>
+                    <% } %>
+                    <div class="text-center my-1">
+                        <a href="/note/getNotes/1/10" class="btn btn-primary">Go to main notes</a>
+                    </div>
+                <div class="my-2">
+                    
+                    <form class="m-auto w-75 p-5" action="/note/addNote/<%=data?._id%>" method="POST" enctype="multipart/form-data">
+
+                        <div class="form-group my-1">
+                            <!-- <object data="https://via.placeholder.com/150/150" type="image/png"> -->
+                                <img src="<%=data?.notePic%>"   alt="note image" height="150" width="150">
+                              <!-- </object> -->
+                        </div>
+                        <div class="form-group my-1">
+
+                            <input value="<%=data?.noteBody%>" class="form-control" name="noteBody" placeholder="noteBody"
+                                type="text" />
+                            <!-- <input value="<%=oldInputs?.noteBody%>" class="form-control" name="noteBody" placeholder="noteBody"
+                                type="text" /> -->
+                                <% if (validationErr?.includes('noteBody')) { %>
+                                    <div class="alert alert-danger my-1 text-center">
+                                       In-valid noteBody
+                                    </div>
+         
+                                    <% } %>
+                        </div>
+
+                         
+
+                        <div class="form-group my-1">
+                            <input class="form-control" name="notePic" type="file" />
+                            <!-- <input class="form-control" name="image" type="file" multiple /> -->
+                        </div>
+
+                        <div class="form-group my-1">
+                            <button class="btn btn-info w-100"> ADD note</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+
+           
+        </section>
+        <%- include('./shared/footer')%>

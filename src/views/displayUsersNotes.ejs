@@ -1,0 +1,92 @@
+<%- include('./shared/header')%>
+
+  <title>Document</title>
+  <link>
+  </head>
+
+  <body>
+    <%- include('./shared/navbar')%>
+
+      <section class="main p-5">
+        <div class="container my-5 p-5">
+          <h1>Notes</h1>
+          <% if (messageErr?.length) { %>
+            <div class="alert alert-danger text-center my-4">
+              <%=messageErr%>
+            </div>
+            <% } %>
+              <!-- <h1>Welcome Back Mr: <%#=userInfo?.name%> 
+               </h1>  -->
+               <h2 class="my-3">Users</h2>
+               <% if (users.length) { %>
+                <span class="alert alert-info my-2 d-block w-50 m-auto text-center">click on user to get their notes</span>
+              <ul>
+                <% for( let index = 0; index < users.length; index++ ) { %>
+                  <li class="my-2"><a href="/user/getNotes/user/<%=users[index]._id%>/1/10" class="btn btn-primary">
+                    <% if (user.id==users[index].id) { %>
+                      <%=users[index].name%>(you)
+                    <% } else{%>
+                    <%=users[index].name%>
+                    <%}%>
+                  </a></li>
+                <% } %>
+
+              </ul >
+               <% } else{ %>
+                <div class="alert alert-danger">no user exist</div>
+              <% } %>
+                 
+                   <%# if (usersNotes.length) { %>
+                    <%# for( let userIndex = 0; userIndex < usersNotes.length; userIndex++ ) { %>
+                        <!-- <h5>userName: <%#=usersNotes[userIndex].name%></h5>
+                    <div class="row justify-content-center my-3"> -->
+                        <%# for( let userIndex = 0; userIndex < usersNotes.length; userIndex++ ) { %>  
+                          <!-- <h2 class="alert alert-success ">userName: <%#=usersNotes[userIndex].name%> </h2>  <span class="d-block">userName: <%#=usersNotes[userIndex].name%> </span>   -->
+                           <%# for( let noteIndex = 0; noteIndex < usersNotes[userIndex].notes.length; noteIndex++ ) { %>
+                                 <!-- <div class="col-md-4">
+                                     <div class="card my-3" style="width: 18rem;">
+                                        <object data="https://via.placeholder.com/150/150" type="image/png"> 
+                                          <img src="<%#= usersNotes[userIndex].notes[noteIndex].notePic %> " class="card-img-top" height="286" alt="notePic"> 
+                                        </object>  
+                 
+                                       <div class="card-body">
+                                         <p class="card-text"> -->
+                                            <%#=usersNotes[userIndex].notes[noteIndex].noteBody %> 
+                                         <!-- </p>
+                                      </div>
+                                   </div></div> -->
+                             <%# } %>
+                     <!-- </div> -->
+                       <%#   }   
+                         }   else { %>
+                     <!-- <div class="w-50 alert alert-danger mt-4 text-center m-auto">No user so no notes found</div>  -->
+                 <%#}%>  
+                <!-- </div> -->
+                
+
+ 
+
+
+      </section>
+
+      <% if (numberOfPages>0 && applyPaginate) { %>
+        <nav aria-label="...">
+          <ul class="pagination pagination-sm d-flex justify-content-center">
+         <%#  <li class="page-item active" aria-current="page"> <span class="page-link">1</span> </li> %>    
+            <li class="page-item">
+              <a class="page-link" href="/user/Notes/1/10">
+                1
+              </a>
+            </li>
+            <% for( let index=2; index <=numberOfPages; index++ ) { %>
+              <li class="page-item"><a class="page-link" href="/user/Notes/<%=index%>/10">
+                  <%= index %>
+                </a></li>
+              <% } %>
+
+
+          </ul>
+        </nav>
+        <% } %>
+
+          <%- include('./shared/footer')%>

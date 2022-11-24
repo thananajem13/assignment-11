@@ -1,0 +1,49 @@
+<%- include('./shared/header')%>
+    <link rel="stylesheet" href="/profile.css">
+
+    <title>Document</title>
+    <link>
+    </head>
+
+    <body>
+      <%- include('./shared/navbar')%>
+         
+        <section class="main p-5">
+            <div class="container my-5 p-5">
+              <h1>Profile</h1>
+              <% if (messageErr?.length) { %>
+                <div class="alert alert-danger text-center my-4">
+                    <%=messageErr%>
+                </div>
+                <% } %>
+                <!-- <object data="https://via.placeholder.com/150/150" type="image/png"> -->
+                  <img  class="img-fluid mt-5 mb-2 profImg" height="150" width="150" src=" <%=user.profilePic%>" alt="profilePic">
+                <!-- </object> -->
+                <h1 >Welcome Back Mr: <%=user.name%>
+                </h1>
+                <h2>contact Info </h2>
+                <ul>
+                  <li>phone: <%=user.phone || "unknown"%></li>
+                  <li>email: <%=user.email%></li>
+                </ul> 
+                <!-- <a href="/user/delete/<%=user._id%>" id="deleteAccount" onclick="confirm()" class="btn btn-danger">Delete Account</a> -->
+                <a href="/user/delete" id="deleteAccount" onclick="return confirm('Are you sure?')" class="btn btn-danger">Delete Account</a>
+                <a href="/user/update" id="updateAccount"  class="btn btn-info my-3">update Account</a>
+                <div class="form  text-center my-5">
+                    
+                    <form class="w-75 m-auto" action="/user/profile/pic" method="POST" enctype="multipart/form-data">
+                        <input class="form-control" type="file" name="image">
+                        <div class="form-group my-2">
+                            <button  class="btn btn-info w-100"> Upload</button>
+                            <!-- <input type="submit" class="btn btn-info w-100" value="Upload">   -->
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </section>
+       
+            
+            
+        <%- include('./shared/footer')%>
